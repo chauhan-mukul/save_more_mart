@@ -39,14 +39,4 @@ DATABASES = {
     )
     
 }
-import os
-from django.contrib.auth import get_user_model
-from django.db.utils import OperationalError
 
-if os.environ.get('RENDER') == 'true':
-    try:
-        User = get_user_model()
-        if not User.objects.filter(username='admin').exists():
-            User.objects.create_superuser('admin', 'admin@example.com', '11211')
-    except OperationalError:
-        pass
